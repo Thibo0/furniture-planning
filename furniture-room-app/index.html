@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planificateur d'ameublement</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="panel">
+        <h1>Planificateur d'ameublement</h1>
+        <p class="hint">
+          Edite le markdown, clique sur <strong>Appliquer</strong>, puis place
+          les meubles dans la vue du dessus.
+        </p>
+
+        <div class="section">
+          <div class="section-title">Markdown de la pièce</div>
+          <textarea id="mdInput" spellcheck="false"></textarea>
+          <div class="row">
+            <button id="applyMd">Appliquer</button>
+            <button id="exportMd">Exporter</button>
+            <button id="resetMd">Réinitialiser</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Ajouter un élément</div>
+          <div class="row wrap">
+            <button class="addBtn" data-type="sofa">Canapé</button>
+            <button class="addBtn" data-type="table">Table</button>
+            <button class="addBtn" data-type="chair">Chaise</button>
+            <button class="addBtn" data-type="bed">Lit</button>
+            <button class="addBtn" data-type="wardrobe">Armoire</button>
+            <button class="addBtn" data-type="door">Porte</button>
+            <button class="addBtn" data-type="window">Fenêtre</button>
+            <button class="addBtn" data-type="radiator">Radiateur</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Créer un élément</div>
+          <div class="field-grid">
+            <label class="field">
+              Libellé
+              <input id="customLabel" type="text" placeholder="Objet" />
+            </label>
+            <label class="field">
+              Largeur (cm)
+              <input id="customWidth" type="number" min="5" step="1" value="80" />
+            </label>
+            <label class="field">
+              Hauteur (cm)
+              <input id="customHeight" type="number" min="5" step="1" value="40" />
+            </label>
+            <label class="field">
+              Couleur
+              <input id="customColor" type="color" value="#94a3b8" />
+            </label>
+          </div>
+          <div class="row">
+            <button id="addCustom">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Sélection</div>
+          <div class="row">
+            <button id="rotateLeft">Rotation -90°</button>
+            <button id="rotateRight">Rotation +90°</button>
+            <button id="deleteItem">Supprimer</button>
+          </div>
+          <p class="hint small">
+            Cliquer pour sélectionner, glisser pour déplacer, étirer un coin pour redimensionner,
+            poignée ronde pour pivoter.
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Mode d'emploi</div>
+          <p class="hint">
+            - Clic sur un meuble pour l'activer.<br />
+            - Glisser un coin pour redimensionner (min 5 × 5 cm).<br />
+            - Glisser le point rond pour pivoter.<br />
+            - Clic droit sur une porte/fenêtre pour inverser l'ouverture.<br />
+            - Exporter pour récupérer le markdown de la pièce.
+          </p>
+        </div>
+      </aside>
+
+      <main class="canvas-area">
+        <canvas id="roomCanvas"></canvas>
+        <div class="legend">
+          Coordonnées en cm, origine en haut à gauche.
+        </div>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
