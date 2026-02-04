@@ -1,6 +1,10 @@
 # Planificateur d'ameublement (HTML/JS)
 
-Ouvre `index.html` dans un navigateur pour lancer l'app.
+## Utiliser depuis GitHub
+
+1) Télécharge le repo (Code → Download ZIP) ou clone-le.
+2) Décompresse si besoin.
+3) Ouvre `furniture-room-app/index.html` dans ton navigateur.
 
 ## Format markdown supporté
 
