@@ -15,32 +15,40 @@
           les meubles dans la vue du dessus.
         </p>
 
-        <div class="section">
-          <div class="section-title">Markdown de la pièce</div>
+        <details class="section" open>
+          <summary class="section-title">Markdown de la pièce</summary>
           <textarea id="mdInput" spellcheck="false"></textarea>
           <div class="row">
-            <button id="applyMd">Appliquer</button>
-            <button id="exportMd">Exporter</button>
-            <button id="resetMd">Réinitialiser</button>
+            <button id="applyMd" title="Appliquer le markdown">Appliquer</button>
+            <button id="exportMd" title="Générer le markdown">Exporter</button>
+            <button id="resetMd" title="Revenir à l'exemple par défaut">Réinitialiser</button>
           </div>
-        </div>
+        </details>
 
-        <div class="section">
-          <div class="section-title">Ajouter un élément</div>
+        <details class="section" open>
+          <summary class="section-title">Ajouter un élément</summary>
           <div class="row wrap">
-            <button class="addBtn" data-type="sofa">Canapé</button>
-            <button class="addBtn" data-type="table">Table</button>
-            <button class="addBtn" data-type="chair">Chaise</button>
-            <button class="addBtn" data-type="bed">Lit</button>
-            <button class="addBtn" data-type="wardrobe">Armoire</button>
-            <button class="addBtn" data-type="door">Porte</button>
-            <button class="addBtn" data-type="window">Fenêtre</button>
-            <button class="addBtn" data-type="radiator">Radiateur</button>
+            <button class="addBtn" data-type="sofa" title="Ajouter un canapé">Canapé</button>
+            <button class="addBtn" data-type="table" title="Ajouter une table">Table</button>
+            <button class="addBtn" data-type="chair" title="Ajouter une chaise">Chaise</button>
+            <button class="addBtn" data-type="bed" title="Ajouter un lit">Lit</button>
+            <button class="addBtn" data-type="wardrobe" title="Ajouter une armoire">Armoire</button>
+            <button class="addBtn" data-type="door" title="Ajouter une porte">Porte</button>
+            <button class="addBtn" data-type="window" title="Ajouter une fenêtre">Fenêtre</button>
+            <button class="addBtn" data-type="radiator" title="Ajouter un radiateur">Radiateur</button>
           </div>
-        </div>
+        </details>
 
-        <div class="section">
-          <div class="section-title">Créer un élément</div>
+        <details class="section" open>
+          <summary class="section-title">Bibliothèque</summary>
+          <div class="row">
+            <select id="presetCategory" title="Catégorie d'objets"></select>
+          </div>
+          <div id="presetList" class="row wrap"></div>
+        </details>
+
+        <details class="section">
+          <summary class="section-title">Créer un élément</summary>
           <div class="field-grid">
             <label class="field">
               Libellé
@@ -58,38 +66,122 @@
               Couleur
               <input id="customColor" type="color" value="#94a3b8" />
             </label>
+            <label class="field">
+              Catégorie preset
+              <input id="customCategory" type="text" placeholder="Perso" />
+            </label>
           </div>
           <div class="row">
-            <button id="addCustom">Ajouter</button>
+            <button id="addCustom" title="Créer un objet personnalisé">Ajouter</button>
+            <button id="savePreset" title="Sauvegarder dans la bibliothèque">Enregistrer preset</button>
           </div>
-        </div>
+        </details>
 
-        <div class="section">
-          <div class="section-title">Sélection</div>
+        <details class="section" open>
+          <summary class="section-title">Historique</summary>
           <div class="row">
-            <button id="rotateLeft">Rotation -90°</button>
-            <button id="rotateRight">Rotation +90°</button>
-            <button id="deleteItem">Supprimer</button>
+            <button id="undoBtn" title="Annuler (Ctrl+Z)">Annuler</button>
+            <button id="redoBtn" title="Rétablir (Ctrl+Y)">Rétablir</button>
+          </div>
+        </details>
+
+        <details class="section" open>
+          <summary class="section-title">Options</summary>
+          <div class="check-grid">
+            <label class="check">
+              <input id="snapToggle" type="checkbox" checked />
+              <span>Aimantation / alignements</span>
+            </label>
+            <label class="check">
+              <input id="collisionToggle" type="checkbox" checked />
+              <span>Éviter chevauchements</span>
+            </label>
+            <label class="check">
+              <input id="measureToggle" type="checkbox" checked />
+              <span>Cotes avancées</span>
+            </label>
+          </div>
+          <div class="zoom-row">
+            <span class="zoom-label">Zoom</span>
+            <button id="zoomOut" title="Zoom arrière">-</button>
+            <input id="zoomRange" type="range" min="0.5" max="3" step="0.05" value="1" />
+            <button id="zoomIn" title="Zoom avant">+</button>
+            <button id="zoomReset" title="Réinitialiser le zoom">100%</button>
+            <span id="zoomValue" class="zoom-value">100%</span>
+          </div>
+        </details>
+
+        <details class="section" open>
+          <summary class="section-title">Import / Export</summary>
+          <div class="row wrap">
+            <button id="exportJson" title="Exporter tout en JSON">Exporter JSON</button>
+            <label class="file-btn" title="Importer un JSON">
+              Importer JSON
+              <input id="importJson" type="file" accept="application/json" />
+            </label>
+            <button id="exportPng" title="Exporter en PNG">PNG</button>
+            <button id="exportSvg" title="Exporter en SVG">SVG</button>
+          </div>
+        </details>
+
+        <details class="section" open>
+          <summary class="section-title">Sélection</summary>
+          <div class="row">
+            <button id="rotateLeft" title="Tourner -90°">Rotation -90°</button>
+            <button id="rotateRight" title="Tourner +90°">Rotation +90°</button>
+            <button id="deleteItem" title="Supprimer l'objet">Supprimer</button>
           </div>
           <p class="hint small">
             Cliquer pour sélectionner, glisser pour déplacer, étirer un coin pour redimensionner,
             poignée ronde pour pivoter.
           </p>
-        </div>
+        </details>
 
-        <div class="section">
-          <div class="section-title">Mode d'emploi</div>
+        <details class="section" open>
+          <summary class="section-title">Pièce</summary>
+          <label class="field">
+            Nom de la pièce
+            <input id="roomName" type="text" placeholder="Pièce 1" />
+          </label>
+          <div class="field-grid">
+            <label class="field">
+              Point X
+              <input id="pointX" type="number" step="1" value="0" />
+            </label>
+            <label class="field">
+              Point Y
+              <input id="pointY" type="number" step="1" value="0" />
+            </label>
+          </div>
+          <div class="row wrap">
+            <button id="addPoint" title="Ajouter un point au contour">Ajouter point</button>
+            <button id="removePoint" title="Supprimer le dernier point">Supprimer dernier</button>
+            <button id="applyPoints" title="Appliquer les points depuis la liste">Appliquer points</button>
+          </div>
+          <textarea id="pointsInput" class="small-textarea" spellcheck="false"></textarea>
+          <p class="hint small">
+            Format : un point par ligne "x,y". Minimum 3 points.
+          </p>
+        </details>
+
+        <details class="section">
+          <summary class="section-title">Mode d'emploi</summary>
           <p class="hint">
             - Clic sur un meuble pour l'activer.<br />
             - Glisser un coin pour redimensionner (min 5 × 5 cm).<br />
             - Glisser le point rond pour pivoter.<br />
+            - Alt + glisser pour rotation libre.<br />
             - Clic droit sur une porte/fenêtre pour inverser l'ouverture.<br />
             - Exporter pour récupérer le markdown de la pièce.
           </p>
-        </div>
+        </details>
       </aside>
 
       <main class="canvas-area">
+        <div class="room-tabs">
+          <div id="roomTabs" class="room-tab-list"></div>
+          <button id="addRoom" title="Ajouter une pièce">+ Pièce</button>
+        </div>
         <canvas id="roomCanvas"></canvas>
         <div class="legend">
           Coordonnées en cm, origine en haut à gauche.
